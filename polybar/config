@@ -1,0 +1,86 @@
+;;;;;;;;;;;;;
+;           ;
+;  polybar  ;
+;           ;
+;;;;;;;;;;;;;
+
+; 192,c0
+; 128,80
+; 64,80
+
+[colors]
+background = #000
+background-0 = #ff020408
+background-1 = #c0020408
+foreground-0 = #fff
+foreground-1 = #888
+foreground-2 = #444
+alert = #f00
+
+[bar/main]
+width = 100%
+height = 30
+fixed-center = false
+wm-restack = bspwm
+
+;background = ${colors.background}
+background-0 = ${colors.background-0}
+background-1 = ${colors.background-1}
+foreground = ${colors.foreground-0}
+
+border-bottom-size = 1
+border-color = #000
+
+padding-left = 0
+padding-right = 4
+
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = Inter Medium:size=11;3
+
+modules-left = bspwm xwindow
+modules-right = date
+
+scroll-up = bspwm-deskprev
+scroll-down = bspwm-desknext
+
+cursor-click = default
+cursor-scroll = default
+
+[module/bspwm]
+type = internal/bspwm
+padding = 3
+
+label-focused = %{T2}%name%%{T-}
+label-focused-padding = ${module/bspwm.padding}
+label-focused-foreground = ${colors.foreground-0}
+
+label-occupied = %{T2}%name%%{T-}
+label-occupied-padding = ${module/bspwm.padding}
+label-occupied-foreground = ${colors.foreground-1}
+
+label-urgent = %{T2}%name%%{T-}
+label-urgent-padding = ${module/bspwm.padding}
+label-urgent-background = ${colors.alert}
+
+label-empty = %{T2}%name%%{T-}
+label-empty-padding = ${module/bspwm.padding}
+label-empty-foreground = ${colors.foreground-2}
+
+[module/date]
+type = internal/date
+interval = 5
+
+date = "%A %d %b"
+date-alt = "%A %d %B %G, Week %U, %D"
+
+time = "%H:%M"
+time-alt = "%H:%M:%S %Z"
+
+label = "%date%, %time%"
+
+[module/xwindow]
+type = internal/xwindow
+label = "%title:0:40:...%"
+label-foreground = ${colors.foreground-1}

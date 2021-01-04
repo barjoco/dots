@@ -1,0 +1,210 @@
+#!/bin/sh
+
+shopt -s direxpand
+
+# colour
+colr() {
+    if [ "$1" = '-1' ]; then
+        tput sgr0
+    else
+        tput setaf "$1"
+    fi
+}
+
+# alacritty working directory window title
+title='\e]0;\w - Alacritty\a'
+export PS1="\[$(colr 5)\]\W \[$(colr -1)\]\$ \[$(echo -e "$title")\]"
+
+#
+#  Env
+#
+
+export GOPATH=/mnt/Portable/Programming/Go
+
+#
+#  Path
+#
+
+export PATH="$PATH":"$GOPATH/bin":"$JAVA_HOME/bin"
+
+#
+#   Aliases
+#
+
+alias ls='exa -stype'    # sort alphabetically and by type
+alias ll='exa -stype -l' # the same, with more detail
+alias lr='exa -rsmod'    # list recently modified files, newest first
+alias open='xdg-open'
+alias code='detach code-oss'
+alias files='detach nautilus'
+alias shutdown='sudo shutdown now'
+alias reboot='sudo reboot'
+alias less='less -R'
+
+#
+#   Locations
+#
+
+gospace="$GOPATH/src/github.com/barjoco"
+usb='/mnt/Portable'
+bks="$usb/Bookmarks"
+docs="$usb/Documents"
+pics="$usb/Pictures"
+vids="$usb/Videos"
+music="$usb/Music"
+uni="$usb/Uni"
+prog="$usb/Programming"
+dls="$HOME/Downloads"
+cfg="$HOME/.config"
+
+alias home='cdr "$HOME"'
+alias usb='cdr "$usb"'
+alias bks='cdr "$bks"'
+alias docs='cdr "$docs"'
+alias pics='cdr "$pics"'
+alias vids='cdr "$vids"'
+alias music='cdr "$music"'
+alias prog='cdr "$prog"'
+alias dls='cdr "$dls"'
+alias cfg='cdr "$cfg"'
+
+alias awd='cdr "$uni/Year_3/Advanced_Web_Dev"'
+alias bsm='cdr "$uni/Year_3/Business_Management"'
+alias fyp='cdr "$uni/Year_3/Final_Year_Project"'
+alias ism='cdr "$uni/Year_3/Info_Sec_Management"'
+alias sqm='cdr "$uni/Year_3/Software_Quality_Management"'
+
+uni() {
+    if [ "$1" != '' ]; then
+        cdr "$uni"/Year_$1
+    else
+        cdr "$uni"
+    fi
+}
+
+#
+#  Functions
+#
+
+# check updates
+chkup() {
+    # eopkg
+    echo -e "$(colr 6)Eopkg:$(colr -1)"
+    eopkg lu
+    echo
+    # flatpak
+    echo -e "$(colr 6)Flatpak:$(colr -1)"
+    flatpak update
+}
+
+# change directory and show some recently modified files
+cdr() {
+    cd "$1"
+    pwd
+    echo
+    echo -e "$(colr 6)Recently modified:$(colr -1)"
+    lr --color=always | head
+    echo
+}
+
+# run process detached
+detach() {
+    ("$@" >/dev/null 2>&1 &)
+}
+
+# run process detached then exit
+detachx() {
+    detach "$@" && exit >/dev/null 2>&1
+}
+
+# convert to pdf: topdf myfile.docx
+topdf() {
+    lowriter --convert-to pdf "$@"
+}
+
+# open in firefox: goto example.pdf
+goto() {
+    for x in "$@"; do
+        detach firefox "$x"
+    done
+}
+
+# search google in firefox: search foo bar baz
+search() {
+    detachx firefox "https://www.google.co.uk/search?q=$(echo "$@" | sed s/" "/+/g)"
+}
+
+# remove spaces from filenames, replaced with underscores: rmspaces *.pdf
+rmspaces() {
+    for f in "$@"; do
+        dir=$(dirname "$f")
+        bn=$(basename "$f")
+        bnFormatted=$(echo "$bn" | tr " " _)
+
+        mv "$f" "$dir/$bnFormatted"
+    done
+}
+
+# zip directories: zipdir mydir myotherdir
+zipdir() {
+    for f in "$@"; do
+        zip -r "$f" "$f"
+    done
+}
+
+# trim video: trim video.mp4 00:00:30 00:00:05
+# (filename, start timestamp, length of video)
+trim() {
+    ffmpeg -ss $2 -i "$1" -t $3 -vcodec copy -acodec copy "trimmed-$1"
+}
+
+# volume control
+vol() {
+    if [ "$1" = 'get' ]; then
+        awk -F"[][]" '/Left:/ { print $2 }' <(amixer sget Master)
+    elif [ "$1" = 'set' ]; then
+        pactl set-sink-volume @DEFAULT_SINK@ $2%
+    elif [ "$1" = 'inc' ]; then
+        pactl set-sink-volume @DEFAULT_SINK@ +10%
+    elif [ "$1" = 'dec' ]; then
+        pactl set-sink-volume @DEFAULT_SINK@ -10%
+    elif [ "$1" = 'help' ]; then
+        echo 'get'
+        echo 'set 50'
+        echo 'inc'
+        echo 'dec'
+    else
+        echo 'unknown argument'        
+    fi
+}
+
+# notifications pause/resume
+nots() {
+    if [ "$1" = 'resume' ]; then
+        notify-send DUNST_COMMAND_RESUME
+        echo 'notifications resumed'
+    elif [ "$1" = "pause" ]; then
+        notify-send DUNST_COMMAND_PAUSE
+        echo 'notifications paused'
+    elif [ "$1" = 'help' ]; then
+        echo 'resume'
+        echo 'pause'
+    else
+        echo 'unknown argument'
+    fi
+}
+
+# calculator
+calc() {
+    echo "$@" | bc -l
+}
+
+# create another terminal in the same location
+term() {
+    detach alacritty --working-directory "$(pwd)"
+}
+
+# fix spotify's icon
+spoticon() {
+    xseticon -name "Spotify Premium" $pics/Icons/Spotify.png
+}

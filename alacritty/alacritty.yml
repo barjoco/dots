@@ -1,0 +1,65 @@
+###############
+#             #
+#  alacritty  #
+#             #
+###############
+
+env:
+  TERM: alacritty
+
+window:  
+  padding:
+   x: 20
+   y: 20
+  dynamic_title: true
+
+scrolling:
+  multiplier: 3
+
+font:
+  normal:
+    family: Roboto Mono Medium
+  size: 11.0
+  offset:
+    x: 0
+    y: 0
+
+draw_bold_text_with_bright_colors: true
+
+colors:
+  primary:
+    background: '0x020408'
+    foreground: '0xf0f8ff'
+  normal:
+    black:   '0x1e2227'
+    red:     '0xff4766'
+    green:   '0x17ff93'
+    yellow:  '0xffdc69'
+    blue:    '0x4e6bff'
+    magenta: '0x66a2ff'
+    cyan:    '0xabd5ff'
+    white:   '0xf0f8ff'
+  bright:
+    black:   '0x3a434d'
+    red:     '0xff8398'
+    green:   '0x71faba'
+    yellow:  '0xffe89e'
+    blue:    '0x6e86ff'
+    magenta: '0x80b2ff'
+    cyan:    '0xc9e4ff'
+    white:   '0xffffff'
+
+background_opacity: 0.95
+
+cursor:
+  style: Beam
+  blinking: Always
+  blink_interval: 750
+  unfocused_hollow: true
+  thickness: 0.15
+
+shell:
+  program: /bin/bash
+
+mouse:  
+  hide_when_typing: true
