@@ -174,7 +174,7 @@ vol() {
         echo 'inc'
         echo 'dec'
     else
-        echo 'unknown argument'        
+        echo 'unknown argument'
     fi
 }
 
@@ -207,4 +207,11 @@ term() {
 # fix spotify's icon
 spoticon() {
     xseticon -name "Spotify Premium" $pics/Icons/Spotify.png
+}
+
+# firefox, spotify, discord
+fsd() {
+    detach firefox
+    detach flatpak run com.spotify.Client
+    detach flatpak run com.discordapp.Discord
 }

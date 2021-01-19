@@ -89,6 +89,10 @@ XF86MonBrightnessDown
 super + n
 	bspc desktop -f next.!occupied
 
+# switch with presel
+super + ctrl + s
+	bspc node -n 'last.!automatic.local'
+
 # increase/decrease gap size	
 super + {minus, equal}
 	bspc config window_gap $(echo "$(bspc config window_gap) {-,+} 20" | bc)
