@@ -14,7 +14,7 @@ start() {
 
 # startup
 start sxhkd
-start feh --bg-scale /mnt/Portable/Pictures/Wallpapers/sun2.jpg
+start feh --bg-scale /mnt/Portable/Pictures/Wallpapers/leaves2.jpg
 start picom
 start tint2
 start dunst
@@ -26,8 +26,8 @@ pactl set-sink-volume @DEFAULT_SINK@ 50%
 bspc monitor -d I II III IV V VI VII VIII IX X
 
 # border
-bspc config focused_border_color "#ffffff"
-bspc config normal_border_color  "#0f0f0f"
+bspc config focused_border_color "#999999"
+bspc config normal_border_color  "#333333"
 
 # windows
 bspc config border_width          1
