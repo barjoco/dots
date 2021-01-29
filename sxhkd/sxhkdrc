@@ -85,6 +85,10 @@ XF86MonBrightnessDown
 #  bspwm hotkeys
 #
 
+#
+# custom
+#
+
 # next unoccupied
 super + n
 	bspc desktop -f next.!occupied
@@ -96,6 +100,14 @@ super + ctrl + s
 # increase/decrease gap size	
 super + {minus, equal}
 	bspc config window_gap $(echo "$(bspc config window_gap) {-,+} 20" | bc)
+
+# open kbpmap
+super + k
+	firefox /mnt/Portable/Pictures/kbpmap.png
+
+#
+# default
+#
 
 # quit/restart bspwm
 super + alt + {q,r}
