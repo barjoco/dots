@@ -103,7 +103,7 @@ super + {minus, equal}
 
 # open kbpmap
 super + k
-	firefox /mnt/Portable/Pictures/kbpmap.png
+	bspc rule -a \* -o state=floating && feh /mnt/Portable/Pictures/kbpmap.png
 
 #
 # default
