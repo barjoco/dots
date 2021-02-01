@@ -18,6 +18,7 @@ start feh --bg-scale /mnt/Portable/Pictures/Wallpapers/leaves2.jpg
 start picom
 start tint2
 start dunst
+start pulseeffects --gapplication-service
 
 xsetroot -cursor_name left_ptr
 pactl set-sink-volume @DEFAULT_SINK@ 50%
