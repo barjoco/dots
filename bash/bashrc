@@ -209,9 +209,20 @@ spoticon() {
     xseticon -name "Spotify Premium" $pics/Icons/Spotify.png
 }
 
+# fix teams's icon
+teamicon() {
+    xseticon -id 35651585 $pics/Icons/Teams.png
+}
+
 # firefox, spotify, discord
 fsd() {
     detach firefox
     detach flatpak run com.spotify.Client
     detach flatpak run com.discordapp.Discord
+}
+
+# restart pulse audio
+respa() {
+    pulseaudio -k
+    pulseaudio -D
 }

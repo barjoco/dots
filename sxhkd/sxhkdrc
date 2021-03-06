@@ -4,10 +4,6 @@
 #         #
 ###########
 
-# reload keybinds
-super + Escape
-	pkill -USR1 -x sxhkd
-
 #
 #  Applications
 #
@@ -30,8 +26,8 @@ super + b
 	sh ~/.config/script/bookmarks.sh
 
 # firefox
-super + i
-	firefox --new-tab
+super + {shift + i, i}
+	firefox {--new-tab --private-window, --new-tab}
 
 # nautilus
 super + e
