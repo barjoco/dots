@@ -40,6 +40,7 @@ alias files='detach nautilus'
 alias shutdown='sudo shutdown now'
 alias reboot='sudo reboot'
 alias less='less -R'
+alias xclip='xclip -selection c'
 
 #
 #   Locations

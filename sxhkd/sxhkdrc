@@ -19,7 +19,7 @@ super + shift + Return
 super + d
 	rofi -show drun -show-icons
 
-super + grave
+super + Tab
 	rofi -show window -show-icons
 
 super + b
@@ -149,7 +149,7 @@ super + {o,i}
 
 # focus or send to the given desktop
 super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
+	bspc {desktop,node -d} '^{1-9,10}' -f
 
 # preselect the direction
 super + ctrl + {Left,Down,Up,Right}
