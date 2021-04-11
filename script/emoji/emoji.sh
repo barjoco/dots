@@ -15,5 +15,5 @@
 #
 # document.body.innerHTML = out;
 
-e=$(cat $HOME/.config/scripts/emoji/emojis.txt | rofi -dmenu -i -p '')
+e=$(cat $HOME/.config/script/emoji/emojis.txt | rofi -dmenu -i -p '')
 awk '{print $1}' <<< $e | tr -d '\n' | xclip -selection c
