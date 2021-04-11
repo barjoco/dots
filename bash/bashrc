@@ -231,10 +231,10 @@ respa() {
 
 # ghosts
 ghosts() {
-    sh ~/.config/scripts/ghosts.sh
+    sh ~/.config/script/ghosts.sh
 }
 
 # illumina
 illumina() {
-    sh ~/.config/scripts/illumina.sh
+    sh ~/.config/script/illumina.sh
 }
