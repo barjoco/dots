@@ -1,6 +1,6 @@
 # dots
 
-**OS**:            solus  
+**OS**:            openSUSE  
 **WM**:            bspwm  
 **Bar**:           tint2  
 **Launcher**:      rofi  
@@ -10,5 +10,3 @@
 **GTK**:           plata-noir-compact  
 **Icons**:         deepin  
 **Cursor**:        adwaita  
-
-![desktop](desktop.png)
