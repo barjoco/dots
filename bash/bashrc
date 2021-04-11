@@ -20,12 +20,13 @@ export PS1="\[$(colr 5)\]\W \[$(colr -1)\]\$ \[$(echo -e "$title")\]"
 #
 
 export GOPATH=/mnt/Portable/Programming/Go
+export DENO_INSTALL="/home/adam/.deno"
 
 #
 #  Path
 #
 
-export PATH="$PATH":"$GOPATH/bin":"$JAVA_HOME/bin"
+export PATH="$PATH:$GOPATH/bin:$DENO_INSTALL/bin"
 
 #
 #   Aliases
@@ -35,7 +36,7 @@ alias ls='exa -stype'    # sort alphabetically and by type
 alias ll='exa -stype -l' # the same, with more detail
 alias lr='exa -rsmod'    # list recently modified files, newest first
 alias open='xdg-open'
-alias code='detach code-oss'
+alias code='detach codium'
 alias files='detach nautilus'
 alias shutdown='sudo shutdown now'
 alias reboot='sudo reboot'
@@ -226,4 +227,14 @@ fsd() {
 respa() {
     pulseaudio -k
     pulseaudio -D
+}
+
+# ghosts
+ghosts() {
+    sh ~/.config/scripts/ghosts.sh
+}
+
+# illumina
+illumina() {
+    sh ~/.config/scripts/illumina.sh
 }
