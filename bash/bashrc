@@ -238,4 +238,3 @@ ghosts() {
 illumina() {
     sh ~/.config/script/illumina.sh
 }
-#test
