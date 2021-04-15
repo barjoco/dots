@@ -238,3 +238,8 @@ ghosts() {
 illumina() {
     sh ~/.config/script/illumina.sh
 }
+
+# markdown to html with css: mdhtml foo.md bar.css baz.html
+mdhtml() {
+    pandoc -s -f markdown -t html5 -o $3 $1 -c $2
+}
